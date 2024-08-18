@@ -18,6 +18,7 @@ class TestAccount:
         main_page: MainPage, 
         account_page: AccountPage
     ):  
+        main_page.wait_hide_modal_overlay()
         main_page.click_on_the_account_button()
 
         actually_value = account_page.get_login_field_text()
@@ -33,7 +34,7 @@ class TestAccount:
         main_page: MainPage, 
         account_page: AccountPage
     ):
-
+        main_page.wait_hide_modal_overlay()
         main_page.click_on_the_account_button()
         account_page.click_history_order()
 
@@ -51,6 +52,7 @@ class TestAccount:
         account_page: AccountPage
     ):
 
+        main_page.wait_hide_modal_overlay()
         main_page.click_on_the_account_button()
         account_page.click_button_exit()
         login_page.wait_title_login()

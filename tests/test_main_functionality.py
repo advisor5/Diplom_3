@@ -36,6 +36,7 @@ class TestFunctionality:
         main_page: MainPage, 
         account_page: AccountPage
     ):  
+        main_page.wait_hide_modal_overlay()
         main_page.click_on_the_account_button()
         account_page.wait_title_profile()
         main_page.click_on_the_tape_orders()
@@ -98,6 +99,5 @@ class TestFunctionality:
         main_page.wait_return_order_number_in_modal()
 
         actually_value = main_page.get_order_number()
-        print(actually_value) #УДАЛИТЬ
         expected_value = PageData.EMPTY
         assert not actually_value == expected_value

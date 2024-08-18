@@ -37,13 +37,15 @@ class TestOrderFeed:
         account_page: AccountPage
     ):  
         
-        main_page.wait_title_collect_burger()
+        main_page.wait_hide_modal_overlay()
+        # main_page.wait_title_collect_burger()
         main_page.drag_and_drop_bun_r2_d3_to_constructor()
         main_page.click_order_button()
         main_page.wait_load_modal_order()
         main_page.wait_return_order_number_in_modal()
         main_page.click_button_cross_in_modal_order()
         
+        main_page.wait_hide_modal_overlay()
         main_page.click_on_the_account_button()
         account_page.click_history_order()
         last_order_number = account_page.get_last_order_in_list()
@@ -64,6 +66,7 @@ class TestOrderFeed:
         order_page: OrderPage,
     ):  
         
+        main_page.wait_hide_modal_overlay()
         main_page.click_on_the_tape_orders()
         total_all_time = int(order_page.get_total_order_all_time())
         main_page.click_on_the_constructor()
@@ -88,6 +91,7 @@ class TestOrderFeed:
         order_page: OrderPage,
     ):  
         
+        main_page.wait_hide_modal_overlay()
         main_page.click_on_the_tape_orders()
         total_today = int(order_page.get_total_order_today())
         main_page.click_on_the_constructor()
@@ -112,6 +116,7 @@ class TestOrderFeed:
         order_page: OrderPage,
     ):  
         
+        main_page.wait_hide_modal_overlay()
         main_page.click_on_the_constructor()
         main_page.drag_and_drop_bun_r2_d3_to_constructor()
         main_page.click_order_button()
