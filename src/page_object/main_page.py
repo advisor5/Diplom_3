@@ -26,6 +26,7 @@ class MainPage:
     order_number = (LocatorsMain.ORDER_NUMBER)
     modal_order_opened = (LocatorsMain.MODAL_ORDER_OPENED)
     load_number = (LocatorsMain.LOAD_NUMBER)
+    modal_display = (LocatorsMain.MODAL_OVERLAY)
 
     def __init__(self,  driver: Chrome | Firefox):
         self.driver = driver
@@ -122,3 +123,8 @@ class MainPage:
     def wait_return_order_number_in_modal(self): 
         WebDriverWait(self.driver, 5).until(
             EC.invisibility_of_element_located(self.load_number))
+        
+    @allure.step("Ожидаем скрытия окна наложения")
+    def wait_hide_modal_overlay(self): 
+        WebDriverWait(self.driver, 5).until(
+            EC.invisibility_of_element(self.modal_display))
