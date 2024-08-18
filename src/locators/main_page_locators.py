@@ -22,3 +22,4 @@ class LocatorsMain:
     ORDER_NUMBER = (By.XPATH, "//div[contains(@class,'modal__container')]//h2") # Заголовок с номером заказа 
     MODAL_ORDER_OPENED = (By.XPATH, "//section[contains(@class,'modal_opened')]") # Открытое модельное заказа 
     LOAD_NUMBER = (By.XPATH, "//div/div[contains(@class,'modal_opened')]") # Загрузился номер
+    MODAL_OVERLAY = (By.XPATH, "//div[contains(@class,'modal_overlay')]") #  Окно наложения
