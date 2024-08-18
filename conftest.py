@@ -2,9 +2,7 @@ import pytest
 import random
 import string
 from selenium import webdriver
-# from selenium.webdriver.chrome.options import Options as ChromeOptions
-from selenium.webdriver.chrome.options import Options
-
+from selenium.webdriver.chrome.options import Options as ChromeOptions
 
 from src.data.constants import Url
 from src.user.user_routes import ApiRegister, ApiUser
@@ -16,29 +14,20 @@ from src.page_object.account_page import AccountPage
 from src.page_object.recovery_page import RecoveryPage
 
 
-# @pytest.fixture(params=["chrome","firefox"])
-# def driver(request):
-#     chrome_opt = ChromeOptions()
-#     chrome_opt.add_argument("--start-maximized")
-#     if request.param == 'chrome':
-#         driver = webdriver.Chrome(options=chrome_opt)
-#     elif request.param == 'firefox':
-#         driver = webdriver.Firefox()
-#         driver.maximize_window()
-#     else:
-#         raise ValueError(f"Unknown browaer: {request.param}")
-#     driver.get(Url.HOST)
-#     yield driver
-#     driver.quit()
-
-@pytest.fixture
-def driver():
-    options = Options()
-    options.add_argument("start-maximized")
-    driver = webdriver.Chrome(options=options)
-    driver.get(Url.HOST)
-    yield driver
-    driver.quit()
+@pytest.fixture(params=["chrome","firefox"])
+def driver(request):
+    chrome_opt = ChromeOptions()
+    chrome_opt.add_argument("--start-maximized")
+    if request.param == 'chrome':
+        browser = webdriver.Chrome(options=chrome_opt)
+    elif request.param == 'firefox':
+        browser = webdriver.Firefox()
+        browser.maximize_window()
+    else:
+        raise ValueError(f"Unknown browser: {request.param}")
+    browser.get(Url.HOST)
+    yield browser
+    browser.quit()
 
 @pytest.fixture
 def generate_random_string():
