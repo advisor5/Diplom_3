@@ -1,6 +1,5 @@
 class UserData:
     EMAIL = "sergei_kravchuk10111@yyy.ru"
-    # PASSWORD = "space12"
     NAME = "Sergei"
 
 class Url:
