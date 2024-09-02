@@ -3,9 +3,6 @@ from selenium.webdriver.common.by import By
 
 class LocatorsMain:
 
-    BUTTON_PERSONAL_AC = (By.XPATH, "//header/nav/a") # Кнопка "Личный кабинет"
-    BUTTON_CONSTRUCTOR = (By.LINK_TEXT, "Конструктор") # Кнопка "Конструктор"
-    BUTTON_TAPE_ORDERS = (By.XPATH, "//header/nav//li[2]/a") # Кнопка "Лента Заказов"
     TITLE_COLLECT_BURGER = (By.XPATH, "//h1[text()='Соберите бургер']")# Заголовок "Собери бургер"
     TITLE_TAPE_ORDERS = (By.XPATH, "//h1[text()='Лента заказов']")# Заголовок "Лента заказов"
     IMG_BUN_R2_D3 = (By.XPATH, "//img[@alt='Флюоресцентная булка R2-D3']") # Ингредиент "Флюоресцентная булка"
@@ -22,4 +19,4 @@ class LocatorsMain:
     ORDER_NUMBER = (By.XPATH, "//div[contains(@class,'modal__container')]//h2") # Заголовок с номером заказа 
     MODAL_ORDER_OPENED = (By.XPATH, "//section[contains(@class,'modal_opened')]") # Открытое модельное заказа 
     LOAD_NUMBER = (By.XPATH, "//div/div[contains(@class,'modal_opened')]") # Загрузился номер
-    MODAL_OVERLAY = (By.XPATH, "//div[contains(@class,'modal_overlay')]") #  Окно наложения
+    MODAL_OVERLAY = (By.XPATH, "//div/div[contains(@class,'modal_overlay')]") #  Окно наложения
