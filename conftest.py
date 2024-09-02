@@ -6,6 +6,7 @@ from selenium.webdriver.chrome.options import Options as ChromeOptions
 
 from src.data.constants import Url
 from src.user.user_routes import ApiRegister, ApiUser
+from src.page_object.base_page import BasePage
 from src.page_object.main_page import MainPage
 from src.page_object.login_page import LoginPage
 from src.page_object.reset_page import ResetPage
@@ -67,18 +68,23 @@ def register_rand_user(generate_random_string):
 def login(
         driver, 
         register_rand_user,
-        main_page: MainPage, 
+        base_page: BasePage, 
         login_page: LoginPage
     ):
     data_user = register_rand_user[0]
     email = data_user[0]
     password = data_user[1]
 
-    main_page.click_on_the_account_button()
+    base_page.click_on_the_account_button()
     login_page.input_email(email)
     login_page.input_password(password)
     login_page.click_input_button()
     yield driver, email
+
+@pytest.fixture
+def base_page(driver):
+    base_page = BasePage(driver)
+    return base_page
 
 @pytest.fixture
 def main_page(driver):
