@@ -3,6 +3,7 @@ from selenium.webdriver.chrome.webdriver import WebDriver as Chrome
 from selenium.webdriver.firefox.webdriver import WebDriver as Firefox
 
 from src.data.constants import Url, UserData, PageData
+from src.page_object.base_page import BasePage
 from src.page_object.main_page import MainPage
 from src.page_object.login_page import LoginPage
 from src.page_object.reset_page import ResetPage
@@ -18,10 +19,14 @@ class TestRecovery:
     )
     @allure.description("Проверяем текущий URL с URL страницы восстановления пароля")
     def test_click_the_recovery_password_button_open_recovery_page(
-        self, driver: Chrome | Firefox, main_page: MainPage, login_page: LoginPage
+        self, 
+        driver: Chrome | Firefox,
+        base_page: BasePage,
+        main_page: MainPage,
+        login_page: LoginPage
     ):
         main_page.wait_title_collect_burger()
-        main_page.click_on_the_account_button()
+        base_page.click_on_the_account_button()
         login_page.click_recovery_link()
 
         actually_value = driver.current_url
@@ -35,13 +40,13 @@ class TestRecovery:
     def test_click_the_recovery_button_open_reset_page(
         self,
         driver: Chrome | Firefox,
-        main_page: MainPage,
+        base_page: BasePage,
         login_page: LoginPage,
         recovery_page: RecoveryPage,
         reset_page: ResetPage
     ):
 
-        main_page.click_on_the_account_button()
+        base_page.click_on_the_account_button()
         login_page.click_recovery_link()
         recovery_page.input_email(self.email)
         recovery_page.click_recover_button()
@@ -58,13 +63,13 @@ class TestRecovery:
     )
     def test_click_eye_botton_activate_field_pass(
         self,
-        main_page: MainPage,
+        base_page: BasePage,
         login_page: LoginPage,
         recovery_page: RecoveryPage,
         reset_page: ResetPage
     ):
 
-        main_page.click_on_the_account_button()
+        base_page.click_on_the_account_button()
         login_page.click_recovery_link()
         recovery_page.input_email(self.email)
         recovery_page.click_recover_button()

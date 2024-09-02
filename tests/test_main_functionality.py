@@ -3,6 +3,7 @@ from selenium.webdriver.chrome.webdriver import WebDriver as Chrome
 from selenium.webdriver.firefox.webdriver import WebDriver as Firefox
 
 from src.data.constants import Url, PageData
+from src.page_object.base_page import BasePage
 from src.page_object.main_page import MainPage
 from src.page_object.account_page import AccountPage
 
@@ -15,12 +16,13 @@ class TestFunctionality:
     def test_click_to_constructor_transfer_to_completed(
         self, 
         login: Chrome | Firefox,
+        base_page: BasePage,
         main_page: MainPage, 
         account_page: AccountPage
     ):  
-        main_page.click_on_the_account_button()
+        base_page.click_on_the_account_button()
         account_page.wait_title_profile()
-        main_page.click_on_the_constructor()
+        base_page.click_on_the_constructor()
         main_page.wait_title_collect_burger()
 
         actually_value = login[0].current_url
@@ -33,13 +35,14 @@ class TestFunctionality:
     def test_click_to_tape_orders_transfer_to_completed(
         self, 
         login: Chrome | Firefox,
+        base_page: BasePage,
         main_page: MainPage, 
         account_page: AccountPage
     ):  
         main_page.wait_hide_modal_overlay()
-        main_page.click_on_the_account_button()
+        base_page.click_on_the_account_button()
         account_page.wait_title_profile()
-        main_page.click_on_the_tape_orders()
+        base_page.click_on_the_tape_orders()
         main_page.wait_title_tape_orders()
 
         actually_value = login[0].current_url

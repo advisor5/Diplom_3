@@ -3,6 +3,7 @@ from selenium.webdriver.chrome.webdriver import WebDriver as Chrome
 from selenium.webdriver.firefox.webdriver import WebDriver as Firefox
 
 from src.data.constants import Url
+from src.page_object.base_page import BasePage
 from src.page_object.main_page import MainPage
 from src.page_object.login_page import LoginPage
 from src.page_object.account_page import AccountPage
@@ -15,11 +16,12 @@ class TestAccount:
     def test_click_to_personal_account_transfer_to_account(
         self, 
         login: Chrome | Firefox,
+        base_page: BasePage,
         main_page: MainPage, 
         account_page: AccountPage
     ):  
         main_page.wait_hide_modal_overlay()
-        main_page.click_on_the_account_button()
+        base_page.click_on_the_account_button()
 
         actually_value = account_page.get_login_field_text()
         email = login[1]
@@ -31,11 +33,12 @@ class TestAccount:
     def test_click_to_history_order_transfer_to_history_order(
         self, 
         login: Chrome | Firefox,
+        base_page: BasePage,
         main_page: MainPage, 
         account_page: AccountPage
     ):
         main_page.wait_hide_modal_overlay()
-        main_page.click_on_the_account_button()
+        base_page.click_on_the_account_button()
         account_page.click_history_order()
 
         actually_value = login[0].current_url
@@ -47,13 +50,14 @@ class TestAccount:
     def test_click_to_exit_transfer_to_login_page(
         self, 
         login: Chrome | Firefox,
+        base_page: BasePage,
         main_page: MainPage, 
         login_page: LoginPage,
         account_page: AccountPage
     ):
 
         main_page.wait_hide_modal_overlay()
-        main_page.click_on_the_account_button()
+        base_page.click_on_the_account_button()
         account_page.click_button_exit()
         login_page.wait_title_login()
 
